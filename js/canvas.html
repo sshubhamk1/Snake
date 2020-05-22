@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var widthCanvas = new Number(document.documentElement.clientWidth) - new Number(document.documentElement.clientWidth)%40;
+        var heightCanvas = new Number(document.documentElement.clientHeight) - new Number(document.documentElement.clientHeight)%40;
+        var CanvasSize = 25*22;//Math.min(widthCanvas, heightCanvas);
+        document.body.innerHTML = '<canvas  id="myCanvas" width="' + CanvasSize + '" height=" ' + CanvasSize + '" style="background-color: green;"></canvas>';
+    </script>
+    <script type="text/javascript">
+        var canvas = document.getElementById('myCanvas');
+        var ctx = canvas.getContext('2d');
+        var box = 25;
+        var rows = canvas.height/box;
+        var cols = canvas.width/box;
+        function fill(color, posx, posy, size)
+        {
+            ctx.fillStyle = color;
+            ctx.fillRect(posx*size, posy*size, size,size);
+            ctx.strokeStyle= "black";
+            ctx.strokeRect(posx*size, posy*size, size,size);
+        }
+        for(let row=0;row<rows; row++)
+        {
+            for(let col =2; col < cols; col++)
+            {
+                if((row%2==0) && (col%2==0))
+                {
+                    fill("#67eb34", row,col,box);
+                }
+                else if((row%2==1) && (col%2==1))
+                {
+                    fill("#67eb34", row, col, box)
+                }
+                else{
+                    fill("#2e8a17", row, col, box);
+                }
+            }
+        }
+        ctx.font = box+"px cursive";
+        ctx.fillText("Score: ", 0, 25);
+    </script>
+</body>
+
+</html>
